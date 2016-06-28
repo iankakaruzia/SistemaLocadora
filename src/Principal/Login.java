@@ -8,6 +8,7 @@ package Principal;
 import DAO.Conexao;
 import DAO.FuncionarioDAO;
 import java.sql.*;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setTitle("LocVideo");
     }
 
     /**
@@ -42,8 +44,9 @@ public class Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
-        btEntrar.setBackground(java.awt.Color.white);
         btEntrar.setText("Entrar");
         btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,6 +55,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         btSair.setText("Sair");
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
@@ -69,17 +77,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel3.setText("Vídeo Locadora");
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel3.setText("LocVideo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -98,16 +102,20 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(btEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(26, 26, 26)
                         .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -143,7 +151,7 @@ public class Login extends javax.swing.JFrame {
         String senha = pfSenha.getText();
         if(login.equalsIgnoreCase("") || senha.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "Nenhum campo pode estar Vazio", 
-                    "Vídeo Locadora", JOptionPane.WARNING_MESSAGE);
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
             tfUsuario.setText("");
             pfSenha.setText("");
         }else{
@@ -164,12 +172,17 @@ public class Login extends javax.swing.JFrame {
                 }.start();
             }else{
                 JOptionPane.showMessageDialog(null, "Usuário ou Senha Inválidos", 
-                        "Vídeo Locadora", JOptionPane.ERROR_MESSAGE);
+                        "LocVideo", JOptionPane.ERROR_MESSAGE);
                 tfUsuario.setText("");
                 pfSenha.setText("");
             }
         }
     }//GEN-LAST:event_btEntrarActionPerformed
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btSairActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,16 @@
  */
 package Visao.Consultar;
 
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import Modelo.Cliente;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ianka
@@ -16,6 +26,10 @@ public class ConsultarCliente extends javax.swing.JFrame {
      */
     public ConsultarCliente() {
         initComponents();
+        
+        setTitle("LocVideo");
+        setSize(970, 380);
+        AtualizaTable();
     }
 
     /**
@@ -27,22 +41,239 @@ public class ConsultarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        tfNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tfCodCliente = new javax.swing.JTextField();
+        btNomeOK = new javax.swing.JButton();
+        btCodOK = new javax.swing.JButton();
+        btTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCliente = new javax.swing.JTable();
+        btVoltar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jInternalFrame1.setVisible(true);
+
+        jLabel1.setText("Pesquisa por Nome:");
+
+        jLabel2.setText("Pesquisa por Codigo:");
+
+        btNomeOK.setText("OK");
+        btNomeOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNomeOKActionPerformed(evt);
+            }
+        });
+
+        btCodOK.setText("OK");
+        btCodOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCodOKActionPerformed(evt);
+            }
+        });
+
+        btTodos.setText("TODOS");
+        btTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTodosActionPerformed(evt);
+            }
+        });
+
+        jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Cliente", "RG", "CPF", "Telefone", "Email"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableCliente);
+
+        btVoltar.setText("Voltar ao Menu");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(6, 6, 6)
+                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btNomeOK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btCodOK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(btTodos))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(btVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfCodCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNomeOK)
+                    .addComponent(btCodOK)
+                    .addComponent(btTodos))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(btVoltar)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTodosActionPerformed
+        // TODO add your handling code here:
+        AtualizaTable();
+    }//GEN-LAST:event_btTodosActionPerformed
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void btNomeOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNomeOKActionPerformed
+        // TODO add your handling code here:
+        String nome = tfNome.getText();
+        if(nome.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o Nome a ser Pesquisado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            ClienteDAO bd = new ClienteDAO(con);
+            List<Cliente> lista = new ArrayList<>();
+            lista = bd.Pesquisar_Nome_Cliente(nome);
+            DefaultTableModel tbm = (DefaultTableModel) jTableCliente.getModel();
+            while(tbm.getRowCount() > 0){
+                tbm.removeRow(0);
+            }
+            int i = 0;
+            for(Cliente tab : lista){
+                tbm.addRow(new String[i]);
+                jTableCliente.setValueAt(tab.getCodigo(), i, 0);
+                jTableCliente.setValueAt(tab.getNome(), i, 1);
+                jTableCliente.setValueAt(tab.getRG(), i, 2);
+                jTableCliente.setValueAt(tab.getCPF(), i, 3);
+                jTableCliente.setValueAt(tab.getTelefone(), i, 4);
+                jTableCliente.setValueAt(tab.getEmail(), i, 5);
+                i++;
+            }
+            Conexao.FecharConexao(con);
+            
+            tfNome.setText("");
+        }
+    }//GEN-LAST:event_btNomeOKActionPerformed
+
+    private void btCodOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCodOKActionPerformed
+        // TODO add your handling code here:
+        String codigo = tfCodCliente.getText();
+        if(codigo.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o código a ser Pesquisado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            ClienteDAO bd = new ClienteDAO(con);
+            List<Cliente> lista = new ArrayList<>();
+            int cod = Integer.parseInt(codigo);
+            lista = bd.Pesquisar_Cod_Cliente(cod);
+            DefaultTableModel tbm = (DefaultTableModel) jTableCliente.getModel();
+            while(tbm.getRowCount() > 0){
+                tbm.removeRow(0);
+            }
+            int i = 0;
+            for(Cliente tab : lista){
+                tbm.addRow(new String[i]);
+                jTableCliente.setValueAt(tab.getCodigo(), i, 0);
+                jTableCliente.setValueAt(tab.getNome(), i, 1);
+                jTableCliente.setValueAt(tab.getRG(), i, 2);
+                jTableCliente.setValueAt(tab.getCPF(), i, 3);
+                jTableCliente.setValueAt(tab.getTelefone(), i, 4);
+                jTableCliente.setValueAt(tab.getEmail(), i, 5);
+               i++;
+            }
+            Conexao.FecharConexao(con);
+            
+            tfCodCliente.setText("");
+        }
+    }//GEN-LAST:event_btCodOKActionPerformed
+
+    private void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO bd = new ClienteDAO(con);
+        List<Cliente> lista = new ArrayList<>();
+        lista = bd.ListarCliente();
+        DefaultTableModel tbm = (DefaultTableModel) jTableCliente.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for(Cliente tab : lista){
+            tbm.addRow(new String[i]);
+            jTableCliente.setValueAt(tab.getCodigo(), i, 0);
+            jTableCliente.setValueAt(tab.getNome(), i, 1);
+            jTableCliente.setValueAt(tab.getRG(), i, 2);
+            jTableCliente.setValueAt(tab.getCPF(), i, 3);
+            jTableCliente.setValueAt(tab.getTelefone(), i, 4);
+            jTableCliente.setValueAt(tab.getEmail(), i, 5);
+            i++;
+        }
+        Conexao.FecharConexao(con);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -79,5 +310,16 @@ public class ConsultarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCodOK;
+    private javax.swing.JButton btNomeOK;
+    private javax.swing.JButton btTodos;
+    private javax.swing.JButton btVoltar;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCliente;
+    private javax.swing.JTextField tfCodCliente;
+    private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
 }

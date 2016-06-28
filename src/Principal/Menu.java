@@ -5,6 +5,29 @@
  */
 package Principal;
 
+import Locacao.ConsultaDevolucao;
+import Locacao.ControleLocacao;
+import Visao.Alterar.AlterarCategoria;
+import Visao.Alterar.AlterarClassificacao;
+import Visao.Alterar.AlterarCliente;
+import Visao.Alterar.AlterarFilme;
+import Visao.Alterar.AlterarFuncionario;
+import Visao.Cadastrar.CadastrarCategoria;
+import Visao.Cadastrar.CadastrarClassificacao;
+import Visao.Cadastrar.CadastrarCliente;
+import Visao.Cadastrar.CadastrarFilme;
+import Visao.Cadastrar.CadastrarFuncionario;
+import Visao.Consultar.ConsultarCategoria;
+import Visao.Consultar.ConsultarClassificacao;
+import Visao.Consultar.ConsultarCliente;
+import Visao.Consultar.ConsultarFilme;
+import Visao.Consultar.ConsultarFuncionario;
+import Visao.Excluir.ExcluirCategoria;
+import Visao.Excluir.ExcluirClassificacao;
+import Visao.Excluir.ExcluirCliente;
+import Visao.Excluir.ExcluirFilme;
+import Visao.Excluir.ExcluirFuncionario;
+
 /**
  *
  * @author ianka
@@ -16,6 +39,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setTitle("LocVideo");
     }
 
     /**
@@ -36,39 +60,44 @@ public class Menu extends javax.swing.JFrame {
         menuCadastrar = new javax.swing.JMenu();
         cadastrarCliente = new javax.swing.JMenuItem();
         cadastrarFilme = new javax.swing.JMenuItem();
-        cadastrarDVD = new javax.swing.JMenuItem();
         cadastrarCategoria = new javax.swing.JMenuItem();
         cadastrarClassificacao = new javax.swing.JMenuItem();
         cadastrarFuncionário = new javax.swing.JMenuItem();
         menuConsultar = new javax.swing.JMenu();
         consultarCliente = new javax.swing.JMenuItem();
         consultarFilme = new javax.swing.JMenuItem();
-        consultarDVD = new javax.swing.JMenuItem();
         consultarCategoria = new javax.swing.JMenuItem();
         consultarClassificacao = new javax.swing.JMenuItem();
         consultarFuncionário = new javax.swing.JMenuItem();
         menuAlterar = new javax.swing.JMenu();
         alterarCliente = new javax.swing.JMenuItem();
         alterarFilme = new javax.swing.JMenuItem();
-        alterarDVD = new javax.swing.JMenuItem();
         alterarCategoria = new javax.swing.JMenuItem();
         alterarClassificacao = new javax.swing.JMenuItem();
         alterarFuncionário = new javax.swing.JMenuItem();
         menuExcluir = new javax.swing.JMenu();
         excluirCliente = new javax.swing.JMenuItem();
         excluirFilme = new javax.swing.JMenuItem();
-        excluirDVD = new javax.swing.JMenuItem();
         excluirCategoria = new javax.swing.JMenuItem();
         excluirClassificacao = new javax.swing.JMenuItem();
         excluirFuncionário = new javax.swing.JMenuItem();
+        menuRelatorio = new javax.swing.JMenu();
+        relatorioAlugueis = new javax.swing.JMenuItem();
+        relatorioCaixa = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jInternalFrame1.setVisible(true);
 
         jPanel1.setBackground(java.awt.Color.lightGray);
 
         btLocacao.setText("Locação");
+        btLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLocacaoActionPerformed(evt);
+            }
+        });
 
         btDevolucao.setText("Devolução");
         btDevolucao.addActionListener(new java.awt.event.ActionListener() {
@@ -78,6 +107,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btSair.setText("Sair");
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,21 +155,28 @@ public class Menu extends javax.swing.JFrame {
         });
         menuCadastrar.add(cadastrarFilme);
 
-        cadastrarDVD.setText("DVD");
-        cadastrarDVD.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarCategoria.setText("Categoria");
+        cadastrarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarDVDActionPerformed(evt);
+                cadastrarCategoriaActionPerformed(evt);
             }
         });
-        menuCadastrar.add(cadastrarDVD);
-
-        cadastrarCategoria.setText("Categoria");
         menuCadastrar.add(cadastrarCategoria);
 
         cadastrarClassificacao.setText("Classificação");
+        cadastrarClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarClassificacaoActionPerformed(evt);
+            }
+        });
         menuCadastrar.add(cadastrarClassificacao);
 
         cadastrarFuncionário.setText("Funcionário");
+        cadastrarFuncionário.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarFuncionárioActionPerformed(evt);
+            }
+        });
         menuCadastrar.add(cadastrarFuncionário);
 
         jMenuBar1.add(menuCadastrar);
@@ -158,21 +199,28 @@ public class Menu extends javax.swing.JFrame {
         });
         menuConsultar.add(consultarFilme);
 
-        consultarDVD.setText("DVD");
-        consultarDVD.addActionListener(new java.awt.event.ActionListener() {
+        consultarCategoria.setText("Categoria");
+        consultarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                consultarDVDActionPerformed(evt);
+                consultarCategoriaActionPerformed(evt);
             }
         });
-        menuConsultar.add(consultarDVD);
-
-        consultarCategoria.setText("Categoria");
         menuConsultar.add(consultarCategoria);
 
         consultarClassificacao.setText("Classificação");
+        consultarClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarClassificacaoActionPerformed(evt);
+            }
+        });
         menuConsultar.add(consultarClassificacao);
 
         consultarFuncionário.setText("Funcionário");
+        consultarFuncionário.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarFuncionárioActionPerformed(evt);
+            }
+        });
         menuConsultar.add(consultarFuncionário);
 
         jMenuBar1.add(menuConsultar);
@@ -195,21 +243,28 @@ public class Menu extends javax.swing.JFrame {
         });
         menuAlterar.add(alterarFilme);
 
-        alterarDVD.setText("DVD");
-        alterarDVD.addActionListener(new java.awt.event.ActionListener() {
+        alterarCategoria.setText("Categoria");
+        alterarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alterarDVDActionPerformed(evt);
+                alterarCategoriaActionPerformed(evt);
             }
         });
-        menuAlterar.add(alterarDVD);
-
-        alterarCategoria.setText("Categoria");
         menuAlterar.add(alterarCategoria);
 
         alterarClassificacao.setText("Classificação");
+        alterarClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarClassificacaoActionPerformed(evt);
+            }
+        });
         menuAlterar.add(alterarClassificacao);
 
         alterarFuncionário.setText("Funcionário");
+        alterarFuncionário.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarFuncionárioActionPerformed(evt);
+            }
+        });
         menuAlterar.add(alterarFuncionário);
 
         jMenuBar1.add(menuAlterar);
@@ -232,24 +287,46 @@ public class Menu extends javax.swing.JFrame {
         });
         menuExcluir.add(excluirFilme);
 
-        excluirDVD.setText("DVD");
-        excluirDVD.addActionListener(new java.awt.event.ActionListener() {
+        excluirCategoria.setText("Categoria");
+        excluirCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluirDVDActionPerformed(evt);
+                excluirCategoriaActionPerformed(evt);
             }
         });
-        menuExcluir.add(excluirDVD);
-
-        excluirCategoria.setText("Categoria");
         menuExcluir.add(excluirCategoria);
 
         excluirClassificacao.setText("Classificação");
+        excluirClassificacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirClassificacaoActionPerformed(evt);
+            }
+        });
         menuExcluir.add(excluirClassificacao);
 
         excluirFuncionário.setText("Funcionário");
+        excluirFuncionário.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirFuncionárioActionPerformed(evt);
+            }
+        });
         menuExcluir.add(excluirFuncionário);
 
         jMenuBar1.add(menuExcluir);
+
+        menuRelatorio.setText("Relatórios");
+
+        relatorioAlugueis.setText("Alugueis");
+        relatorioAlugueis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioAlugueisActionPerformed(evt);
+            }
+        });
+        menuRelatorio.add(relatorioAlugueis);
+
+        relatorioCaixa.setText("Caixa");
+        menuRelatorio.add(relatorioCaixa);
+
+        jMenuBar1.add(menuRelatorio);
 
         jInternalFrame1.setJMenuBar(jMenuBar1);
 
@@ -282,55 +359,146 @@ public class Menu extends javax.swing.JFrame {
 
     private void btDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolucaoActionPerformed
         // TODO add your handling code here:
+        new ConsultaDevolucao().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btDevolucaoActionPerformed
 
     private void cadastrarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFilmeActionPerformed
         // TODO add your handling code here:
+        new CadastrarFilme().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cadastrarFilmeActionPerformed
-
-    private void cadastrarDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarDVDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cadastrarDVDActionPerformed
 
     private void cadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarClienteActionPerformed
         // TODO add your handling code here:
+        new CadastrarCliente().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cadastrarClienteActionPerformed
 
     private void consultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarClienteActionPerformed
         // TODO add your handling code here:
+        new ConsultarCliente().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_consultarClienteActionPerformed
 
     private void consultarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFilmeActionPerformed
         // TODO add your handling code here:
+        new ConsultarFilme().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_consultarFilmeActionPerformed
-
-    private void consultarDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDVDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_consultarDVDActionPerformed
 
     private void alterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarClienteActionPerformed
         // TODO add your handling code here:
+        new AlterarCliente().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_alterarClienteActionPerformed
 
     private void alterarFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarFilmeActionPerformed
         // TODO add your handling code here:
+        new AlterarFilme().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_alterarFilmeActionPerformed
-
-    private void alterarDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarDVDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alterarDVDActionPerformed
 
     private void excluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirClienteActionPerformed
         // TODO add your handling code here:
+        new ExcluirCliente().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_excluirClienteActionPerformed
 
     private void excluirFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirFilmeActionPerformed
         // TODO add your handling code here:
+        new ExcluirFilme().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_excluirFilmeActionPerformed
 
-    private void excluirDVDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirDVDActionPerformed
+    private void cadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarCategoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_excluirDVDActionPerformed
+        new CadastrarCategoria().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cadastrarCategoriaActionPerformed
+
+    private void cadastrarClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarClassificacaoActionPerformed
+        // TODO add your handling code here:
+        new CadastrarClassificacao().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cadastrarClassificacaoActionPerformed
+
+    private void cadastrarFuncionárioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarFuncionárioActionPerformed
+        // TODO add your handling code here:
+        new CadastrarFuncionario().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cadastrarFuncionárioActionPerformed
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btSairActionPerformed
+
+    private void excluirCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirCategoriaActionPerformed
+        // TODO add your handling code here:
+        new ExcluirCategoria().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_excluirCategoriaActionPerformed
+
+    private void excluirClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirClassificacaoActionPerformed
+        // TODO add your handling code here:
+        new ExcluirClassificacao().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_excluirClassificacaoActionPerformed
+
+    private void excluirFuncionárioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirFuncionárioActionPerformed
+        // TODO add your handling code here:
+        new ExcluirFuncionario().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_excluirFuncionárioActionPerformed
+
+    private void consultarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarCategoriaActionPerformed
+        // TODO add your handling code here:
+        new ConsultarCategoria().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_consultarCategoriaActionPerformed
+
+    private void consultarClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarClassificacaoActionPerformed
+        // TODO add your handling code here:
+        new ConsultarClassificacao().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_consultarClassificacaoActionPerformed
+
+    private void consultarFuncionárioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFuncionárioActionPerformed
+        // TODO add your handling code here:
+        new ConsultarFuncionario().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_consultarFuncionárioActionPerformed
+
+    private void alterarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarCategoriaActionPerformed
+        // TODO add your handling code here:
+        new AlterarCategoria().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_alterarCategoriaActionPerformed
+
+    private void alterarClassificacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarClassificacaoActionPerformed
+        // TODO add your handling code here:
+        new AlterarClassificacao().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_alterarClassificacaoActionPerformed
+
+    private void alterarFuncionárioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarFuncionárioActionPerformed
+        // TODO add your handling code here:
+        new AlterarFuncionario().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_alterarFuncionárioActionPerformed
+
+    private void btLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLocacaoActionPerformed
+        // TODO add your handling code here:
+        new ControleLocacao().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btLocacaoActionPerformed
+
+    private void relatorioAlugueisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioAlugueisActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_relatorioAlugueisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,7 +539,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem alterarCategoria;
     private javax.swing.JMenuItem alterarClassificacao;
     private javax.swing.JMenuItem alterarCliente;
-    private javax.swing.JMenuItem alterarDVD;
     private javax.swing.JMenuItem alterarFilme;
     private javax.swing.JMenuItem alterarFuncionário;
     private javax.swing.JButton btDevolucao;
@@ -380,19 +547,16 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastrarCategoria;
     private javax.swing.JMenuItem cadastrarClassificacao;
     private javax.swing.JMenuItem cadastrarCliente;
-    private javax.swing.JMenuItem cadastrarDVD;
     private javax.swing.JMenuItem cadastrarFilme;
     private javax.swing.JMenuItem cadastrarFuncionário;
     private javax.swing.JMenuItem consultarCategoria;
     private javax.swing.JMenuItem consultarClassificacao;
     private javax.swing.JMenuItem consultarCliente;
-    private javax.swing.JMenuItem consultarDVD;
     private javax.swing.JMenuItem consultarFilme;
     private javax.swing.JMenuItem consultarFuncionário;
     private javax.swing.JMenuItem excluirCategoria;
     private javax.swing.JMenuItem excluirClassificacao;
     private javax.swing.JMenuItem excluirCliente;
-    private javax.swing.JMenuItem excluirDVD;
     private javax.swing.JMenuItem excluirFilme;
     private javax.swing.JMenuItem excluirFuncionário;
     private javax.swing.JInternalFrame jInternalFrame1;
@@ -402,5 +566,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu menuCadastrar;
     private javax.swing.JMenu menuConsultar;
     private javax.swing.JMenu menuExcluir;
+    private javax.swing.JMenu menuRelatorio;
+    private javax.swing.JMenuItem relatorioAlugueis;
+    private javax.swing.JMenuItem relatorioCaixa;
     // End of variables declaration//GEN-END:variables
 }

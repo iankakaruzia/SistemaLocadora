@@ -5,6 +5,16 @@
  */
 package Visao.Consultar;
 
+import DAO.CategoriaDAO;
+import DAO.Conexao;
+import Modelo.Categoria;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ianka
@@ -16,6 +26,9 @@ public class ConsultarCategoria extends javax.swing.JFrame {
      */
     public ConsultarCategoria() {
         initComponents();
+        setTitle("LocVideo");
+        setSize(970, 380);
+        AtualizaTable();
     }
 
     /**
@@ -27,21 +40,232 @@ public class ConsultarCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        tfNome = new javax.swing.JTextField();
+        btOKNome = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tfCodigo = new javax.swing.JTextField();
+        btOKCod = new javax.swing.JButton();
+        btTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCategoria = new javax.swing.JTable();
+        btVoltar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jInternalFrame1.setVisible(true);
+
+        jLabel1.setText("Pesquisar por Nome:");
+
+        btOKNome.setText("OK");
+        btOKNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKNomeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Pesquisar por Código:");
+
+        btOKCod.setText("OK");
+        btOKCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKCodActionPerformed(evt);
+            }
+        });
+
+        btTodos.setText("TODOS");
+        btTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTodosActionPerformed(evt);
+            }
+        });
+
+        jTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableCategoria);
+        if (jTableCategoria.getColumnModel().getColumnCount() > 0) {
+            jTableCategoria.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTableCategoria.getColumnModel().getColumn(0).setMaxWidth(200);
+        }
+
+        btVoltar.setText("Voltar ao Menu");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btOKNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btOKCod)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(btTodos))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btVoltar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btOKNome)
+                    .addComponent(jLabel2)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btOKCod)
+                    .addComponent(btTodos))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(btVoltar)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO bd = new CategoriaDAO(con);
+        List<Categoria> lista = new ArrayList<>();
+        lista = bd.ListarCategoria();
+        DefaultTableModel tbm = (DefaultTableModel) jTableCategoria.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for(Categoria tab : lista){
+            tbm.addRow(new String[i]);
+            jTableCategoria.setValueAt(tab.getCodigo(), i, 0);
+            jTableCategoria.setValueAt(tab.getNome(), i, 1);
+            i++;
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    private void btOKNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKNomeActionPerformed
+        // TODO add your handling code here:
+        String nome = tfNome.getText();
+        if(nome.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o Nome a ser Pesquisado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            CategoriaDAO bd = new CategoriaDAO(con);
+            List<Categoria> lista = new ArrayList<>();
+            lista = bd.Pesquisar_Nome_Categoria(nome);
+            DefaultTableModel tbm = (DefaultTableModel) jTableCategoria.getModel();
+            while(tbm.getRowCount() > 0){
+                tbm.removeRow(0);
+            }
+            int i = 0;
+            for(Categoria tab : lista){
+                tbm.addRow(new String[i]);
+                jTableCategoria.setValueAt(tab.getCodigo(), i, 0);
+                jTableCategoria.setValueAt(tab.getNome(), i, 1);
+                i++;
+            }
+            Conexao.FecharConexao(con);
+            
+            tfNome.setText("");
+        }
+    }//GEN-LAST:event_btOKNomeActionPerformed
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void btTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTodosActionPerformed
+        // TODO add your handling code here:
+        AtualizaTable();
+    }//GEN-LAST:event_btTodosActionPerformed
+
+    private void btOKCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKCodActionPerformed
+        // TODO add your handling code here:
+        String codigo = tfCodigo.getText();
+        if(codigo.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o código a ser pesquisado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            CategoriaDAO bd = new CategoriaDAO(con);
+            List<Categoria> lista = new ArrayList<>();
+            int cod = Integer.parseInt(codigo);
+            lista = bd.Pesquisar_Cod_Categoria(cod);
+            DefaultTableModel tbm = (DefaultTableModel) jTableCategoria.getModel();
+            while(tbm.getRowCount() > 0){
+                tbm.removeRow(0);
+            }
+            int i = 0;
+            for(Categoria tab : lista){
+                tbm.addRow(new String[i]);
+                jTableCategoria.setValueAt(tab.getCodigo(), i, 0);
+                jTableCategoria.setValueAt(tab.getNome(), i, 1);
+                i++;
+            }
+            Conexao.FecharConexao(con);
+            tfCodigo.setText("");
+        }
+    }//GEN-LAST:event_btOKCodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +303,16 @@ public class ConsultarCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btOKCod;
+    private javax.swing.JButton btOKNome;
+    private javax.swing.JButton btTodos;
+    private javax.swing.JButton btVoltar;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCategoria;
+    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
 }

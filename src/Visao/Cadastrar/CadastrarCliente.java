@@ -8,6 +8,7 @@ package Visao.Cadastrar;
 import DAO.ClienteDAO;
 import DAO.Conexao;
 import Modelo.Cliente;
+import Principal.Menu;
 import javax.swing.JOptionPane;
 import java.sql.*;
 
@@ -22,6 +23,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
      */
     public CadastrarCliente() {
         initComponents();
+        setTitle("LocVideo");
     }
 
     /**
@@ -50,7 +52,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
         tfCodigo = new javax.swing.JTextField();
         tfNome = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        ftfRG = new javax.swing.JFormattedTextField();
         ftfCPF = new javax.swing.JFormattedTextField();
         ftfTelefone = new javax.swing.JFormattedTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -62,8 +63,10 @@ public class CadastrarCliente extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         ftfCEP = new javax.swing.JFormattedTextField();
         tfEmail = new javax.swing.JTextField();
+        tfRG = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jInternalFrame1.setVisible(true);
 
@@ -107,6 +110,11 @@ public class CadastrarCliente extends javax.swing.JFrame {
         });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,33 +169,31 @@ public class CadastrarCliente extends javax.swing.JFrame {
         jLabel9.setText("CPF:");
 
         try {
-            ftfRG.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############################")));
+            ftfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            ftfCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            ftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+            ftfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         jLabel10.setText("Data de Nascimento:");
 
-        ftfDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            ftfDataNasc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel11.setText("Nº");
 
         jLabel12.setText("CEP:");
 
         try {
-            ftfCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###############")));
+            ftfCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -223,12 +229,12 @@ public class CadastrarCliente extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ftfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ftfRG, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfRG, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
+                                        .addGap(56, 56, 56)
                                         .addComponent(jLabel9)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(ftfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
@@ -247,7 +253,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfNome)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,8 +271,8 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel9)
-                    .addComponent(ftfRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ftfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -289,7 +295,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -309,6 +315,16 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
+        tfNome.setText("");
+        ftfDataNasc.setText("");
+        ftfCEP.setText("");
+        tfRua.setText("");
+        tfNumero.setText("");
+        tfBairro.setText("");
+        tfEmail.setText("");
+        ftfTelefone.setText("");
+        ftfCPF.setText("");
+        tfRG.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void tfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNomeActionPerformed
@@ -326,14 +342,14 @@ public class CadastrarCliente extends javax.swing.JFrame {
         String email = tfEmail.getText();
         String fone = ftfTelefone.getText();
         String cpf = ftfCPF.getText();
-        String rg = ftfRG.getText();
+        String rg = tfRG.getText();
         
         if(nome.equals("") || nascimento.equals("") || cep.equals("") ||
                 rua.equals("") || numero.equals("") || bairro.equals("") ||
                 email.equals("") || fone.equals("") || cpf.equals("") ||
                 rg.equals("")){
             JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", 
-                    "Vídeo Locadora", JOptionPane.WARNING_MESSAGE);
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
         }else{
             Connection con = Conexao.AbrirConexao();
             ClienteDAO sql = new ClienteDAO(con);
@@ -363,14 +379,23 @@ public class CadastrarCliente extends javax.swing.JFrame {
             tfEmail.setText("");
             ftfTelefone.setText("");
             ftfCPF.setText("");
-            ftfRG.setText("");
+            tfRG.setText("");
             
             JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", 
-                    "Vídeo Locadora", JOptionPane.INFORMATION_MESSAGE);
+                    "LocVideo", JOptionPane.INFORMATION_MESSAGE);
             
             dispose();
+            
+            new CadastrarCliente().setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,7 +439,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ftfCEP;
     private javax.swing.JFormattedTextField ftfCPF;
     private javax.swing.JFormattedTextField ftfDataNasc;
-    private javax.swing.JFormattedTextField ftfRG;
     private javax.swing.JFormattedTextField ftfTelefone;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
@@ -436,6 +460,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNumero;
+    private javax.swing.JTextField tfRG;
     private javax.swing.JTextField tfRua;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,15 @@
  */
 package Visao.Excluir;
 
+import DAO.Conexao;
+import DAO.FilmeDAO;
+import Modelo.Filme;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ianka
@@ -16,6 +25,8 @@ public class ExcluirFilme extends javax.swing.JFrame {
      */
     public ExcluirFilme() {
         initComponents();
+        setTitle("LocVideo");
+        AtualizarCombo();
     }
 
     /**
@@ -27,21 +38,178 @@ public class ExcluirFilme extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        codFilme = new javax.swing.JTextField();
+        jCB_Titulo = new javax.swing.JComboBox<>();
+        btExcluir = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jInternalFrame1.setVisible(true);
+
+        jPanel2.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Excluir Filme");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+
+        jLabel2.setText("Titulo:");
+
+        jCB_Titulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_TituloActionPerformed(evt);
+            }
+        });
+
+        btExcluir.setText("OK");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(codFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCB_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109)
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(codFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCB_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btExcluir)
+                    .addComponent(btCancelar))
+                .addGap(24, 24, 24))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AtualizarCombo(){
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO sql = new FilmeDAO(con);
+        List<Filme> lista = new ArrayList<>();
+        lista = sql.ListarComboFilme();
+        jCB_Titulo.addItem("");
+        
+        for(Filme b : lista){
+            jCB_Titulo.addItem(b.getTitulo());
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void jCB_TituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_TituloActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO sql = new FilmeDAO(con);
+        List<Filme> lista = new ArrayList<>();
+        String titulo = jCB_Titulo.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoFilme(titulo);
+        
+        for(Filme b : lista){
+            int a = b.getCodigo();
+            codFilme.setText("" + a);
+        }
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jCB_TituloActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // TODO add your handling code here:
+        String codigo = codFilme.getText();
+        String titulo = jCB_Titulo.getSelectedItem().toString();
+        
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO sql = new FilmeDAO(con);
+        Filme a = new Filme();
+        
+        if(titulo.equals("")){
+            JOptionPane.showMessageDialog(null, "Nenhum Nome Selecionado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            int b = JOptionPane.showConfirmDialog(null, "Deseja Realmente Excluir"
+                    + "\n (" + codigo + ") (" + titulo + ")", "LocVideo", 
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(b == 0){
+                int cod = Integer.parseInt(codigo);
+                a.setTitulo(titulo);
+                a.setCodigo(cod);
+                sql.Excluir_Filme(a);
+                Conexao.FecharConexao(con);
+                dispose();
+                new ExcluirFilme().setVisible(true);
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +247,13 @@ public class ExcluirFilme extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JTextField codFilme;
+    private javax.swing.JComboBox<String> jCB_Titulo;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

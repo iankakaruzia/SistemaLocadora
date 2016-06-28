@@ -17,6 +17,9 @@ public class Filme {
     private String duracao;
     private int cod_categoria;
     private int cod_classificacao;
+    private double preco_compra;
+    private String data_compra;
+    private int qtdEstoque;
     private String capa;
 
     public int getCodigo() {
@@ -73,6 +76,30 @@ public class Filme {
 
     public void setCapa(String capa) {
         this.capa = capa;
+    }
+
+    public double getPreco_compra() {
+        return preco_compra;
+    }
+
+    public void setPreco_compra(double preco_compra) {
+        this.preco_compra = preco_compra;
+    }
+
+    public String getData_compra() {
+        return data_compra;
+    }
+
+    public void setData_compra(String data_compra) {
+        this.data_compra = data_compra;
+    }
+
+    public int getQtdEstoque() {
+        return qtdEstoque;
+    }
+
+    public void setQtdEstoque(int qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
     }
     
     

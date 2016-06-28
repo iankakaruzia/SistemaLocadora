@@ -5,6 +5,13 @@
  */
 package Visao.Cadastrar;
 
+import DAO.CategoriaDAO;
+import DAO.Conexao;
+import Modelo.Categoria;
+import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ianka
@@ -16,6 +23,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
      */
     public CadastrarCategoria() {
         initComponents();
+        setTitle("LocVideo");
     }
 
     /**
@@ -40,6 +48,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         tfNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jInternalFrame1.setVisible(true);
 
@@ -76,8 +85,18 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         });
 
         btSalvar.setText("Cadastrar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,7 +182,45 @@ public class CadastrarCategoria extends javax.swing.JFrame {
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
+        tfNome.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // TODO add your handling code here:
+        
+        String nome = tfNome.getText();
+        
+        if(nome.equals("")){
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            CategoriaDAO sql = new CategoriaDAO(con);
+            Categoria c = new Categoria();
+            
+            c.setNome(nome);
+            
+            sql.Inserir_Categoria(c);
+            Conexao.FecharConexao(con);
+            
+            tfNome.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", 
+                    "LocVideo", JOptionPane.INFORMATION_MESSAGE);
+            
+            dispose();
+            
+            new CadastrarCategoria().setVisible(true);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments

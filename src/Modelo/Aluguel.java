@@ -12,7 +12,7 @@ package Modelo;
 public class Aluguel {
     
     private int cod;
-    private int cod_dvd;
+    private int cod_filme;
     private int cod_cliente;
     private String data_aluguel;
     private String horario;
@@ -24,14 +24,6 @@ public class Aluguel {
 
     public void setCod(int cod) {
         this.cod = cod;
-    }
-
-    public int getCod_dvd() {
-        return cod_dvd;
-    }
-
-    public void setCod_dvd(int cod_dvd) {
-        this.cod_dvd = cod_dvd;
     }
 
     public int getCod_cliente() {
@@ -64,6 +56,14 @@ public class Aluguel {
 
     public void setData_devolucao(String data_devolucao) {
         this.data_devolucao = data_devolucao;
+    }
+
+    public int getCod_filme() {
+        return cod_filme;
+    }
+
+    public void setCod_filme(int cod_filme) {
+        this.cod_filme = cod_filme;
     }
     
     

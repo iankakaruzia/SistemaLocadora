@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -94,6 +95,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Loca&#xe7;&#xe3;o"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLocacaoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btDevolucao">
               <Properties>
@@ -107,6 +111,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSairActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -133,28 +140,29 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarFilmeActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="cadastrarDVD">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="DVD"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarDVDActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="cadastrarCategoria">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Categoria"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarCategoriaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="cadastrarClassificacao">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Classifica&#xe7;&#xe3;o"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarClassificacaoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="cadastrarFuncion&#xe1;rio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastrarFuncion&#xe1;rioActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -179,28 +187,29 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarFilmeActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="consultarDVD">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="DVD"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarDVDActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="consultarCategoria">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Categoria"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarCategoriaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="consultarClassificacao">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Classifica&#xe7;&#xe3;o"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarClassificacaoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="consultarFuncion&#xe1;rio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarFuncion&#xe1;rioActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -225,28 +234,29 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarFilmeActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="alterarDVD">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="DVD"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarDVDActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="alterarCategoria">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Categoria"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarCategoriaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="alterarClassificacao">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Classifica&#xe7;&#xe3;o"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarClassificacaoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="alterarFuncion&#xe1;rio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alterarFuncion&#xe1;rioActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -271,27 +281,48 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="excluirFilmeActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="excluirDVD">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="DVD"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="excluirDVDActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="excluirCategoria">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Categoria"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="excluirCategoriaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="excluirClassificacao">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Classifica&#xe7;&#xe3;o"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="excluirClassificacaoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="excluirFuncion&#xe1;rio">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="excluirFuncion&#xe1;rioActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="menuRelatorio">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Relat&#xf3;rios"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="relatorioAlugueis">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Alugueis"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relatorioAlugueisActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="relatorioCaixa">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Caixa"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>

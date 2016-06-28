@@ -5,6 +5,16 @@
  */
 package Visao.Consultar;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ianka
@@ -16,6 +26,9 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
      */
     public ConsultarFuncionario() {
         initComponents();
+        setTitle("LocVideo");
+        setSize(970, 380);
+        AtualizaTable();
     }
 
     /**
@@ -27,21 +40,233 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        tfNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tfCod = new javax.swing.JTextField();
+        btOKNome = new javax.swing.JButton();
+        btOKCod = new javax.swing.JButton();
+        btTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableFunc = new javax.swing.JTable();
+        btVoltar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jInternalFrame1.setVisible(true);
+
+        jLabel1.setText("Pesquisar por Nome:");
+
+        jLabel2.setText("Pesquisar por Código:");
+
+        btOKNome.setText("OK");
+        btOKNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKNomeActionPerformed(evt);
+            }
+        });
+
+        btOKCod.setText("OK");
+        btOKCod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOKCodActionPerformed(evt);
+            }
+        });
+
+        btTodos.setText("TODOS");
+        btTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTodosActionPerformed(evt);
+            }
+        });
+
+        jTableFunc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Nome", "Login"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableFunc);
+        if (jTableFunc.getColumnModel().getColumnCount() > 0) {
+            jTableFunc.getColumnModel().getColumn(0).setPreferredWidth(150);
+            jTableFunc.getColumnModel().getColumn(0).setMaxWidth(200);
+        }
+
+        btVoltar.setText("Voltar ao Menu");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btOKNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btOKCod)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(btTodos)
+                .addGap(27, 27, 27))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btVoltar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btOKNome)
+                    .addComponent(btOKCod)
+                    .addComponent(btTodos))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btVoltar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        FuncionarioDAO bd = new FuncionarioDAO(con);
+        List<Funcionario> lista = new ArrayList<>();
+        lista = bd.ListarFuncionario();
+        DefaultTableModel tbm = (DefaultTableModel) jTableFunc.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for(Funcionario tab : lista){
+            tbm.addRow(new String[i]);
+            jTableFunc.setValueAt(tab.getCod(), i, 0);
+            jTableFunc.setValueAt(tab.getNome(), i, 1);
+            jTableFunc.setValueAt(tab.getLogin(), i, 2);
+            i++;
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void btTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTodosActionPerformed
+        // TODO add your handling code here:
+        AtualizaTable();
+    }//GEN-LAST:event_btTodosActionPerformed
+
+    private void btOKNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKNomeActionPerformed
+        // TODO add your handling code here:
+        String nome = tfNome.getText();
+        if(nome.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o nome a ser Pesquisado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            FuncionarioDAO bd = new FuncionarioDAO(con);
+            List<Funcionario> lista = new ArrayList<>();
+            lista = bd.Pesquisar_Nome_Funcionario(nome);
+            DefaultTableModel tbm = (DefaultTableModel) jTableFunc.getModel();
+            while(tbm.getRowCount() > 0){
+                tbm.removeRow(0);
+            }
+            int i = 0;
+            for(Funcionario tab : lista){
+                tbm.addRow(new String[i]);
+                jTableFunc.setValueAt(tab.getCod(), i, 0);
+                jTableFunc.setValueAt(tab.getNome(), i, 1);
+                jTableFunc.setValueAt(tab.getLogin(), i, 2);
+                i++;
+            }
+            Conexao.FecharConexao(con);
+            tfNome.setText("");
+        }
+    }//GEN-LAST:event_btOKNomeActionPerformed
+
+    private void btOKCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOKCodActionPerformed
+        // TODO add your handling code here:
+        String codigo = tfCod.getText();
+        if(codigo.equals("")){
+            JOptionPane.showMessageDialog(null, "Digite o código a ser Pesquisado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            int cod = Integer.parseInt(codigo);
+            Connection con = Conexao.AbrirConexao();
+            FuncionarioDAO bd = new FuncionarioDAO(con);
+            List<Funcionario> lista = new ArrayList<>();
+            lista = bd.Pesquisar_Cod_Funcionario(cod);
+            DefaultTableModel tbm = (DefaultTableModel) jTableFunc.getModel();
+            while(tbm.getRowCount() > 0){
+                tbm.removeRow(0);
+            }
+            int i = 0;
+            for(Funcionario tab : lista){
+                tbm.addRow(new String[i]);
+                jTableFunc.setValueAt(tab.getCod(), i, 0);
+                jTableFunc.setValueAt(tab.getNome(), i, 1);
+                jTableFunc.setValueAt(tab.getLogin(), i, 2);
+                i++;
+            }
+            Conexao.FecharConexao(con);
+            tfCod.setText("");
+        }
+    }//GEN-LAST:event_btOKCodActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +304,16 @@ public class ConsultarFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btOKCod;
+    private javax.swing.JButton btOKNome;
+    private javax.swing.JButton btTodos;
+    private javax.swing.JButton btVoltar;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableFunc;
+    private javax.swing.JTextField tfCod;
+    private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,26 @@
  */
 package Locacao;
 
+import DAO.AluguelDAO;
+import DAO.CaixaDAO;
+import DAO.ClassificacaoDAO;
+import DAO.ClienteDAO;
+import DAO.Conexao;
+import DAO.FilmeDAO;
+import Modelo.Aluguel;
+import Modelo.Caixa;
+import Modelo.Classificacao;
+import Modelo.Cliente;
+import Modelo.Filme;
+import Principal.Menu;
+import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ianka
@@ -16,6 +36,10 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
      */
     public ConsultaDevolucao() {
         initComponents();
+        setTitle("LocVideo");
+        setSize(970, 430);
+        AtualizarCombo();
+        AtualizaTable();
     }
 
     /**
@@ -28,20 +52,118 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jCB_Cliente = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable = new javax.swing.JTable();
+        btVoltar = new javax.swing.JButton();
+        tfCod = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btDevolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jInternalFrame1.setVisible(true);
+
+        jLabel1.setText("Cliente:");
+
+        jCB_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_ClienteActionPerformed(evt);
+            }
+        });
+
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Filme", "Cliente", "Horário", "Locação", "Devolução"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable);
+        if (jTable.getColumnModel().getColumnCount() > 0) {
+            jTable.getColumnModel().getColumn(0).setPreferredWidth(70);
+            jTable.getColumnModel().getColumn(0).setMaxWidth(80);
+            jTable.getColumnModel().getColumn(3).setPreferredWidth(80);
+            jTable.getColumnModel().getColumn(3).setMaxWidth(100);
+            jTable.getColumnModel().getColumn(4).setPreferredWidth(100);
+            jTable.getColumnModel().getColumn(4).setMaxWidth(150);
+            jTable.getColumnModel().getColumn(5).setPreferredWidth(100);
+            jTable.getColumnModel().getColumn(5).setMaxWidth(150);
+        }
+
+        btVoltar.setText("Voltar ao Menu");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Código do Aluguel:");
+
+        btDevolver.setText("Devolver");
+        btDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDevolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 771, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addComponent(btVoltar)
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCod, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btDevolver)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCB_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jCB_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btVoltar)
+                    .addComponent(tfCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(btDevolver))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -57,6 +179,161 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AtualizaTable(){
+        Connection con = Conexao.AbrirConexao();
+        AluguelDAO aDAO = new AluguelDAO(con);
+        ClienteDAO cDAO = new ClienteDAO(con);
+        FilmeDAO fDAO = new FilmeDAO(con);
+        List<Aluguel> lista = new ArrayList<>();
+        List<Cliente> lista2 = new ArrayList<>();
+        List<Filme> lista3 = new ArrayList<>();
+        lista = aDAO.ListarAluguel();
+        DefaultTableModel tbm = (DefaultTableModel) jTable.getModel();
+        while(tbm.getRowCount() > 0){
+            tbm.removeRow(0);
+        }
+        int i = 0;
+        for(Aluguel a : lista){
+            tbm.addRow(new String[i]);
+            jTable.setValueAt(a.getCod(), i, 0);
+            lista3 = fDAO.Pesquisar_Cod_Filme(a.getCod_filme());
+            for(Filme f : lista3){
+                jTable.setValueAt(f.getTitulo(), i, 1);
+            }
+            lista2 = cDAO.Pesquisar_Cod_Cliente(a.getCod_cliente());
+            for(Cliente c : lista2){
+                jTable.setValueAt(c.getNome(), i, 2);
+            }
+            jTable.setValueAt(a.getHorario(), i, 3);
+            jTable.setValueAt(a.getData_aluguel(), i, 4);
+            jTable.setValueAt(a.getData_devolucao(), i, 5);
+            i++;
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    private void AtualizarCombo(){
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        List<Cliente> lista = new ArrayList<>();
+        lista = sql.ListarComboCliente();
+        jCB_Cliente.addItem("");
+        
+        for(Cliente a : lista){
+            jCB_Cliente.addItem(a.getNome());
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    private void InserirCaixa(int codFilme){
+        Connection con = Conexao.AbrirConexao();
+        FilmeDAO fDAO = new FilmeDAO(con);
+        ClassificacaoDAO claDAO = new ClassificacaoDAO(con);
+        CaixaDAO cDAO = new CaixaDAO(con);
+        List<Filme> lista = new ArrayList<>();
+        lista = fDAO.Pesquisar_Cod_Filme(codFilme);
+        double valor = 0;
+        
+        for(Filme f : lista){
+            List<Classificacao> lista2 = new ArrayList<>();
+            lista2 = claDAO.Pesquisar_Cod_Classificacao(f.getCod_classificacao());
+            for(Classificacao c : lista2){
+                valor = c.getPreco();
+            }
+        }
+        
+        Caixa c = new Caixa();
+        Date date = new Date();
+        SimpleDateFormat data = new SimpleDateFormat("yyyy/MM/dd");
+        data.format(date);
+            
+        c.setData_entrada(date);
+        c.setValor(valor);
+            
+        cDAO.Inserir_Caixa(c);
+    }
+    
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
+
+    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableMouseClicked
+
+    private void jCB_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_ClienteActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        ClienteDAO sql = new ClienteDAO(con);
+        AluguelDAO sql2 = new AluguelDAO(con);
+        FilmeDAO sql3 = new FilmeDAO(con);
+        List<Cliente> lista = new ArrayList<>();
+        List<Aluguel> lista2 = new ArrayList<Aluguel>();
+        List<Filme> lista3 = new ArrayList<>();
+        String nome = jCB_Cliente.getSelectedItem().toString();
+        if(nome.equals("")){
+            AtualizaTable();
+        }else{
+            lista = sql.Pesquisar_Nome_Cliente(nome);
+
+            for(Cliente a : lista){
+                lista2 = sql2.Pesquisar_Aluguel_Cliente(a.getCodigo());
+                DefaultTableModel tbm = (DefaultTableModel) jTable.getModel();
+                while(tbm.getRowCount() > 0){
+                    tbm.removeRow(0);
+                }
+                int i = 0;
+                for(Aluguel b : lista2){
+                    tbm.addRow(new String[i]);
+                    jTable.setValueAt(b.getCod(), i, 0);
+                    lista3 = sql3.Pesquisar_Cod_Filme(b.getCod_filme());
+                    for(Filme f : lista3){
+                        jTable.setValueAt(f.getTitulo(), i, 1);
+                    }
+                    jTable.setValueAt(a.getNome(), i, 2);
+                    jTable.setValueAt(b.getHorario(), i, 3);
+                    jTable.setValueAt(b.getData_aluguel(), i, 4);
+                    jTable.setValueAt(b.getData_devolucao(), i, 5);
+                    i++;
+                }
+            }
+        }
+        Conexao.FecharConexao(con);
+    }//GEN-LAST:event_jCB_ClienteActionPerformed
+
+    private void btDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDevolverActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        String cod = tfCod.getText();
+        AluguelDAO aDAO = new AluguelDAO(con);
+        FilmeDAO fDAO = new FilmeDAO(con);
+        CaixaDAO cDAO = new CaixaDAO(con);
+        ClassificacaoDAO claDAO = new ClassificacaoDAO(con);
+        int codigo = Integer.parseInt(cod);
+        int b = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esse Aluguel?", 
+                "LocVideo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if(b==0){
+            int codFilme = aDAO.Pesquisar_Cod_Filme(codigo);
+            List<Filme> lista = fDAO.Pesquisar_Cod_Filme(codFilme);
+            for(Filme f : lista){
+                int qtd = f.getQtdEstoque() + 1;
+                fDAO.Atualizar_Qtd_Filme(f.getCodigo(), qtd);
+            }
+            
+            InserirCaixa(codFilme);
+            //COMO VAI APAGAR UM ALUGUEL SE ELE ESTÁ REFERENCIADO EM CAIXA????
+            Aluguel ref = new Aluguel();
+            ref.setCod(codigo);
+            aDAO.Excluir_Aluguel(ref);
+            Conexao.FecharConexao(con);
+            dispose();
+            new ConsultaDevolucao().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btDevolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -94,6 +371,14 @@ public class ConsultaDevolucao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btDevolver;
+    private javax.swing.JButton btVoltar;
+    private javax.swing.JComboBox<String> jCB_Cliente;
     private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable;
+    private javax.swing.JTextField tfCod;
     // End of variables declaration//GEN-END:variables
 }

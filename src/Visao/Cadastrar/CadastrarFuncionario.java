@@ -5,6 +5,13 @@
  */
 package Visao.Cadastrar;
 
+import DAO.Conexao;
+import DAO.FuncionarioDAO;
+import Modelo.Funcionario;
+import Principal.Menu;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ianka
@@ -15,6 +22,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
      * Creates new form CadastrarFuncionario
      */
     public CadastrarFuncionario() {
+        setTitle("LocVideo");
         initComponents();
     }
 
@@ -44,6 +52,7 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         tfCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jInternalFrame1.setVisible(true);
 
@@ -57,8 +66,18 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         });
 
         btSalvar.setText("Cadastrar");
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,6 +137,8 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
         jLabel4.setText("Login:");
 
         jLabel5.setText("Senha:");
+
+        tfCodigo.setEditable(false);
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -186,7 +207,50 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         // TODO add your handling code here:
+        tfNome.setText("");
+        tfLogin.setText("");
+        pfSenha.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // TODO add your handling code here:
+        String nome = tfNome.getText();
+        String login = tfLogin.getText();
+        String senha = pfSenha.getText();
+        
+        if(nome.equals("") || login.equals("") || senha.equals("")){
+            JOptionPane.showMessageDialog(null, "Nenhum campo pode estar vazio", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            Connection con = Conexao.AbrirConexao();
+            FuncionarioDAO sql = new FuncionarioDAO(con);
+            Funcionario f = new Funcionario();
+            
+            f.setNome(nome);
+            f.setLogin(login);
+            f.setSenha(senha);
+            
+            sql.Inserir_Funcionario(f);
+            Conexao.FecharConexao(con);
+            
+            tfNome.setText("");
+            tfLogin.setText("");
+            pfSenha.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Cadastro Realizado com Sucesso", 
+                    "LocVideo", JOptionPane.INFORMATION_MESSAGE);
+            
+            dispose();
+            new CadastrarFuncionario().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments

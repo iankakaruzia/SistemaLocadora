@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -71,13 +72,13 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="ftfTelefone" min="-2" pref="194" max="-2" attributes="0"/>
-                                      <Component id="ftfRG" min="-2" pref="240" max="-2" attributes="0"/>
+                                      <Component id="tfRG" min="-2" pref="250" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="ftfCPF" min="-2" pref="206" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -105,7 +106,7 @@
                           <Component id="tfNome" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,8 +128,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ftfRG" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ftfCPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfRG" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -156,7 +157,7 @@
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -265,6 +266,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -318,24 +322,17 @@
             <Property name="text" type="java.lang.String" value="CPF:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="ftfRG">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="#############################" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftfCPF">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="###########" subtype="-1" type="5"/>
+              <Format format="###.###.###-##" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftfTelefone">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="###########" subtype="-1" type="5"/>
+              <Format format="(##)#####-####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
@@ -346,8 +343,8 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="ftfDataNasc">
           <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="1"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
@@ -370,11 +367,13 @@
         <Component class="javax.swing.JFormattedTextField" name="ftfCEP">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="###############" subtype="-1" type="5"/>
+              <Format format="#####-###" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfEmail">
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfRG">
         </Component>
       </SubComponents>
     </Container>

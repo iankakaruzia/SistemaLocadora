@@ -5,6 +5,15 @@
  */
 package Visao.Excluir;
 
+import DAO.CategoriaDAO;
+import DAO.Conexao;
+import Modelo.Categoria;
+import Principal.Menu;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ianka
@@ -16,6 +25,8 @@ public class ExcluirCategoria extends javax.swing.JFrame {
      */
     public ExcluirCategoria() {
         initComponents();
+        setTitle("LocVideo");
+        AtualizarCombo();
     }
 
     /**
@@ -27,21 +38,178 @@ public class ExcluirCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        codCategoria = new javax.swing.JTextField();
+        jCB_Nome = new javax.swing.JComboBox<>();
+        btExcluir = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jInternalFrame1.setVisible(true);
+
+        jPanel2.setBackground(java.awt.Color.white);
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Excluir Categoria");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel2.setText("Nome:");
+
+        jCB_Nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_NomeActionPerformed(evt);
+            }
+        });
+
+        btExcluir.setText("OK");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
+
+        btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(codCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCB_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(codCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCB_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btExcluir)
+                    .addComponent(btCancelar))
+                .addGap(29, 29, 29))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void AtualizarCombo(){
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        List<Categoria> lista = new ArrayList<>();
+        lista = sql.ListarComboCategoria();
+        jCB_Nome.addItem("");
+        
+        for(Categoria b : lista){
+            jCB_Nome.addItem(b.getNome());
+        }
+        Conexao.FecharConexao(con);
+    }
+    
+    private void jCB_NomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_NomeActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        List<Categoria> lista = new ArrayList<>();
+        String nome = jCB_Nome.getSelectedItem().toString();
+        
+        lista = sql.ConsultaCodigoCategoria(nome);
+        
+        for(Categoria b : lista){
+            int a = b.getCodigo();
+            codCategoria.setText("" + a);
+        }
+        Conexao.FecharConexao(con);
+        
+    }//GEN-LAST:event_jCB_NomeActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        // TODO add your handling code here:
+        String codigo = codCategoria.getText();
+        String nome = jCB_Nome.getSelectedItem().toString();
+        
+        Connection con = Conexao.AbrirConexao();
+        CategoriaDAO sql = new CategoriaDAO(con);
+        Categoria a = new Categoria();
+        if(nome.equals("")){
+            JOptionPane.showMessageDialog(null, "Nenhum Nome Selecionado", 
+                    "LocVideo", JOptionPane.WARNING_MESSAGE);
+        }else{
+            int b = JOptionPane.showConfirmDialog(null, "Deseja realmente Excluir"
+                    + "\n (" + codigo + ") (" + nome + ")", "LocVideo", 
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(b == 0){
+                int cod = Integer.parseInt(codigo);
+                a.setNome(nome);
+                a.setCodigo(cod);
+                sql.Exluir_Categoria(a);
+                Conexao.FecharConexao(con);
+                dispose();
+                new ExcluirCategoria().setVisible(true);
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        new Menu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +247,13 @@ public class ExcluirCategoria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btExcluir;
+    private javax.swing.JTextField codCategoria;
+    private javax.swing.JComboBox<String> jCB_Nome;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

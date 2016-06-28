@@ -3,6 +3,7 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,10 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -49,7 +47,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" alignment="0" pref="336" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -73,27 +71,27 @@
                       <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfTitulo" max="32767" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfCodigoDVD" min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="codFilme" min="-2" pref="45" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btOk" min="-2" pref="47" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                          <Component id="jTextField1" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="tfCodFilme" min="-2" pref="35" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                           <Component id="ftfHoras" min="-2" pref="106" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tfTitulo" min="-2" pref="470" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -103,7 +101,7 @@
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="tfCategoria" min="-2" pref="35" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -113,12 +111,12 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="ftfValorAluguel" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <Component id="tfValor" min="-2" pref="78" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="tfCliente" min="-2" pref="35" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" max="32767" attributes="0"/>
+                                          <Component id="jCB_Cliente" min="-2" pref="410" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -128,11 +126,11 @@
                                   <Component id="ftfDataLocacao" min="-2" pref="113" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                  <Component id="ftfDataDevolucao" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jDateChooserDevolucao" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="223" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -142,10 +140,10 @@
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfCodFilme" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btOk" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfCodigoDVD" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="codFilme" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="ftfHoras" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -160,23 +158,30 @@
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfClassificados" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ftfValorAluguel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfValor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCB_Cliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ftfDataLocacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ftfDataDevolucao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="ftfDataLocacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jDateChooserDevolucao" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="26" max="32767" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -195,11 +200,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="btLimpar" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                               <Component id="btSalvar" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace pref="201" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                               <Component id="btCancelar" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -207,19 +212,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="btLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="2" attributes="0">
-                                      <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -237,17 +235,23 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cadastrar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btCancelar">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cancelar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelarActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="C&#xf3;digo do DVD:"/>
+                    <Property name="text" type="java.lang.String" value="C&#xf3;digo do Filme:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
@@ -270,12 +274,15 @@
                     <Property name="text" type="java.lang.String" value="Data da Loca&#xe7;&#xe3;o:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfCodigoDVD">
+                <Component class="javax.swing.JTextField" name="codFilme">
                 </Component>
                 <Component class="javax.swing.JButton" name="btOk">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="OK"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btOkActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tfTitulo">
                   <Properties>
@@ -302,35 +309,26 @@
                     <Property name="text" type="java.lang.String" value="Valor do Aluguel:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="ftfValorAluguel">
-                  <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format subtype="0" type="4"/>
-                    </Property>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JTextField" name="tfCliente">
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
+                <Component class="javax.swing.JComboBox" name="jCB_Cliente">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCB_ClienteActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JFormattedTextField" name="ftfDataLocacao">
                   <Properties>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format subtype="0" type="1"/>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##/##/####" subtype="-1" type="5"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -339,14 +337,7 @@
                     <Property name="text" type="java.lang.String" value="Data da Devolu&#xe7;&#xe3;o:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="ftfDataDevolucao">
-                  <Properties>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format subtype="0" type="1"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="tfCodFilme">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
@@ -359,10 +350,17 @@
                 <Component class="javax.swing.JFormattedTextField" name="ftfHoras">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format subtype="1" type="2"/>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##:##" subtype="-1" type="5"/>
                     </Property>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="tfValor">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserDevolucao">
                 </Component>
               </SubComponents>
             </Container>
@@ -380,121 +378,85 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jScrollPane1" pref="746" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfCodigo" min="-2" pref="45" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btBuscarCodigo" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfDVD" min="-2" pref="45" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btBuscarDVD" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="tfCodCliente" min="-2" pref="45" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="btBuscarCliente" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="jScrollPane1" pref="746" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="PesqFilme" min="-2" pref="45" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btBuscarFilme" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="PesqCliente" min="-2" pref="45" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btBuscarCliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="btTodos" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btTodos" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfDVD" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btBuscarDVD" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btBuscarCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="PesqFilme" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btBuscarFilme" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfCodCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="PesqCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btBuscarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="184" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="164" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="jLabel10">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Pesquisar por C&#xf3;digo:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="tfCodigo">
-                </Component>
-                <Component class="javax.swing.JButton" name="btBuscarCodigo">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Ok"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Pesquisar por DVD:"/>
+                    <Property name="text" type="java.lang.String" value="Pesquisar por Filme:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfDVD">
+                <Component class="javax.swing.JTextField" name="PesqFilme">
                 </Component>
-                <Component class="javax.swing.JButton" name="btBuscarDVD">
+                <Component class="javax.swing.JButton" name="btBuscarFilme">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ok"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarFilmeActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pesquisar por Cliente:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tfCodCliente">
+                <Component class="javax.swing.JTextField" name="PesqCliente">
                 </Component>
                 <Component class="javax.swing.JButton" name="btBuscarCliente">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ok"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarClienteActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btTodos">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Todos"/>
+                    <Property name="text" type="java.lang.String" value="TODOS"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btTodosActionPerformed"/>
                   </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -504,21 +466,21 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="jTableConsulta">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="0">
-                            <Column editable="true" title="C&#xf3;digo" type="java.lang.Integer"/>
-                            <Column editable="true" title="DVD" type="java.lang.String"/>
-                            <Column editable="true" title="Cliente" type="java.lang.String"/>
-                            <Column editable="true" title="Hor&#xe1;rio" type="java.lang.String"/>
-                            <Column editable="true" title="Loca&#xe7;&#xe3;o" type="java.lang.String"/>
-                            <Column editable="true" title="Devolu&#xe7;&#xe3;o" type="java.lang.String"/>
+                            <Column editable="false" title="C&#xf3;digo" type="java.lang.Integer"/>
+                            <Column editable="false" title="Filme" type="java.lang.String"/>
+                            <Column editable="false" title="Cliente" type="java.lang.String"/>
+                            <Column editable="false" title="Hor&#xe1;rio" type="java.lang.String"/>
+                            <Column editable="false" title="Loca&#xe7;&#xe3;o" type="java.lang.String"/>
+                            <Column editable="false" title="Devolu&#xe7;&#xe3;o" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="80" minWidth="-1" prefWidth="70" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -533,17 +495,17 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="100" minWidth="-1" prefWidth="80" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="150" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="150" minWidth="-1" prefWidth="100" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
